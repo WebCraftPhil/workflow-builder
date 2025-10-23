@@ -1,139 +1,180 @@
-# Workflow Builder
+# n8n Visual Workflow Builder
 
-## Description
+A modern, visual workflow builder interface for **n8n**, designed as a no-code automation platform inspired by Node-RED and Zapier. This application provides an intuitive drag-and-drop canvas environment for creating, editing, and managing n8n workflows.
 
-A sophisticated multi-agent workflow orchestration system designed to automate complex business processes through intelligent agent coordination. The system enables the creation, execution, and monitoring of workflows that involve multiple autonomous agents working together to accomplish specific objectives.
+## 🚀 Features
 
-**Key Features:**
+- **Visual Canvas**: Drag-and-drop workflow creation with ReactFlow
+- **Comprehensive Node Library**: Triggers, Actions, Logic, Data Transformation, and AI nodes
+- **Real-time Validation**: Instant feedback on workflow configuration
+- **n8n Integration**: Full JSON compatibility and API synchronization
+- **Responsive Design**: Works on desktop, tablet, and mobile devices
+- **TypeScript**: Fully typed for better development experience
+- **Modern UI**: Built with React, TypeScript, and Tailwind CSS
 
-- Autonomous agent management and coordination
-- Flexible workflow orchestration engine
-- Comprehensive error handling and recovery
-- Real-time monitoring and logging
-- Scalable architecture for enterprise deployment
+## 📋 Project Structure
 
-TODO: Expand with specific use cases, target audience, and competitive advantages.
+```
+workflow-builder/
+├── src/
+│   ├── components/          # React components
+│   │   ├── WorkflowBuilder.tsx    # Main workflow canvas
+│   │   └── ...
+│   ├── hooks/               # Custom React hooks
+│   ├── stores/              # State management (Zustand)
+│   ├── types/               # TypeScript type definitions
+│   ├── utils/               # Utility functions
+│   ├── services/            # API and external service integrations
+│   ├── App.tsx              # Main app component
+│   ├── main.tsx             # React entry point
+│   └── index.css            # Global styles
+├── public/                  # Static assets
+├── package.json             # Dependencies and scripts
+├── tsconfig.json            # TypeScript configuration
+├── vite.config.ts           # Vite build configuration
+└── tailwind.config.js       # Tailwind CSS configuration
+```
 
-## Architecture Summary
+## 🛠️ Tech Stack
 
-The system follows a modular architecture with clear separation of concerns:
+- **Frontend**: React 18 + TypeScript
+- **Canvas**: ReactFlow for drag-and-drop workflow creation
+- **Styling**: Tailwind CSS
+- **Build Tool**: Vite
+- **State Management**: Zustand
+- **HTTP Client**: Axios
+- **Real-time**: Socket.io for live collaboration
 
-- **Agent Layer**: Individual autonomous agents with specialized capabilities
-- **Orchestration Layer**: Workflow engine that coordinates agent activities
-- **Communication Layer**: Message passing and API integration infrastructure
-- **Persistence Layer**: Data storage and state management
-- **Monitoring Layer**: Observability and performance tracking
-
-### Core Components
-
-- **Agents**: Specialized software components that perform specific tasks
-- **Workflow Engine**: Central coordinator that manages execution flow
-- **Message Broker**: Handles inter-agent communication
-- **Configuration System**: Manages agent and workflow settings
-- **API Gateway**: Provides external access to system functionality
-
-TODO: Add architecture diagrams and detailed component descriptions.
-
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- **Node.js** (v16.0 or higher)
-- **Docker** (for containerized deployment)
-- **Kubernetes** (for production orchestration)
-- **PostgreSQL** (for data persistence)
-- **Redis** (for caching and message queuing)
+- Node.js 18+ and npm
+- Modern web browser
 
-### System Requirements
+### Installation
 
-- **Minimum**: 4 CPU cores, 8GB RAM, 50GB storage
-- **Recommended**: 8 CPU cores, 16GB RAM, 100GB storage
-- **Production**: Scale based on workload requirements
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd workflow-builder
+   ```
 
-TODO: Add specific version requirements and compatibility matrix.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-### Setup Instructions
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
 
-#### 1. Environment Setup
+4. **Open your browser**
+   Navigate to `http://localhost:3000`
 
-```bash
-# Clone the repository
-git clone https://github.com/your-org/workflow-builder.git
-cd workflow-builder
+### Available Scripts
 
-# Install dependencies
-npm install
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+- `npm run type-check` - Run TypeScript type checking
 
-# Configure environment variables
-cp .env.example .env
-# Edit .env with your specific configuration
+## 📖 Usage
+
+### Creating Workflows
+
+1. **Select Nodes**: Drag nodes from the left palette onto the canvas
+2. **Connect Nodes**: Click and drag between node connection points
+3. **Configure Properties**: Select nodes to configure their parameters in the right panel
+4. **Validate**: Real-time validation provides immediate feedback
+5. **Test**: Use the toolbar to run and test your workflow
+
+### Node Types
+
+- **Triggers**: Webhook, Schedule, Manual, Email, Database, File, API
+- **Actions**: HTTP Request, Email, Database, File, Message Queue, Notifications
+- **Logic**: If/Else, Switch, Loop, Wait/Delay, Error Handler, Filter, Sort
+- **Data Transformation**: JSON, XML, CSV, Text, Date/Time, Math, Regex, Template
+- **AI & ML**: OpenAI, Anthropic, Hugging Face, Vector DB, Text Analysis, Image Analysis
+
+## 🔗 n8n Integration
+
+The workflow builder is fully compatible with n8n's workflow format:
+
+### Export/Import
+- Export workflows as n8n-compatible JSON
+- Import existing n8n workflows
+- Template sharing and management
+
+### Real-time Sync
+- WebSocket connection for live collaboration
+- REST API integration for workflow management
+- OAuth and credential management
+
+## 🎨 Design Specification
+
+For detailed UI/UX specifications, see [`workflow-builder-spec.md`](workflow-builder-spec.md) which includes:
+
+- Complete UI layout and interaction design
+- Technical architecture diagrams
+- Implementation roadmap
+- Advanced feature specifications
+
+## 🔧 Development
+
+### Project Structure Details
+
+```
+src/
+├── components/          # Reusable UI components
+│   ├── WorkflowBuilder.tsx    # Main canvas component
+│   ├── NodePalette.tsx        # Node selection sidebar
+│   ├── PropertiesPanel.tsx    # Node configuration panel
+│   └── ...
+├── stores/              # Zustand state stores
+│   ├── workflowStore.ts       # Workflow state management
+│   ├── nodeStore.ts           # Node state management
+│   └── ...
+├── types/               # TypeScript definitions
+│   ├── workflow.ts            # Workflow type definitions
+│   ├── node.ts                # Node type definitions
+│   └── ...
+├── services/            # External API integrations
+│   ├── n8nApi.ts              # n8n server communication
+│   ├── validation.ts          # Workflow validation
+│   └── ...
 ```
 
-#### 2. Database Setup
+### Adding New Node Types
 
-```bash
-# Start PostgreSQL and Redis (via Docker)
-docker-compose up -d postgres redis
+1. Define the node type in `src/types/node.ts`
+2. Create the node component in `src/components/nodes/`
+3. Add to the palette in `NodePalette.tsx`
+4. Implement configuration in `PropertiesPanel.tsx`
 
-# Run database migrations
-npm run migrate
-```
+## 📚 Learn More
 
-#### 3. Agent Configuration
+- [ReactFlow Documentation](https://reactflow.dev/)
+- [n8n API Documentation](https://docs.n8n.io/api/)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+- [Tailwind CSS Guide](https://tailwindcss.com/docs)
 
-```bash
-# Configure agents (see agents.md for details)
-npm run configure-agents
+## 🤝 Contributing
 
-# Start the workflow engine
-npm run start:engine
-```
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
 
-#### 4. Verification
+## 📄 License
 
-```bash
-# Health check
-curl http://localhost:3000/health
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-# Run sample workflow
-npm run example:workflow
-```
+## 🙏 Acknowledgments
 
-TODO: Add detailed setup scripts and verification procedures.
-
-## File Structure
-
-```text
-workflow-builder/
-├── README.md           # This file - project overview
-├── agents.md          # Agent definitions and configuration
-├── workflow.md        # Workflow orchestration documentation
-├── src/
-│   ├── agents/        # Agent implementations
-│   ├── workflows/     # Workflow definitions
-│   ├── config/        # Configuration management
-│   └── utils/         # Shared utilities
-├── tests/             # Test suites
-├── docs/              # Additional documentation
-└── docker/            # Docker configurations
-```
-
-### Documentation Files
-
-- **[agents.md](agents.md)**: Detailed agent specifications, capabilities, and configuration
-- **[workflow.md](workflow.md)**: Workflow orchestration logic and execution patterns
-
-TODO: Expand file structure with additional directories and files as the project grows.
-
-## Contributing
-
-1. Follow the established code style and documentation standards
-2. Add tests for new functionality
-3. Update documentation for any changes
-4. Ensure all CI/CD checks pass
-
-## License
-
-[License information]
-
-TODO: Add license details and contribution guidelines.
+- Inspired by [Node-RED](https://nodered.org/) and [Zapier](https://zapier.com/)
+- Built with [ReactFlow](https://reactflow.dev/) and [n8n](https://n8n.io/)
+- Styled with [Tailwind CSS](https://tailwindcss.com/)
